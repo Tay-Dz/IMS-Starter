@@ -3,14 +3,14 @@ package com.qa.ims.persistence.domain;
 public class Items {
 	private Long id;
 	private String itemName;
-	private float price;
+	private double price;
 
-	public Items(String itemName, float price) {
+	public Items(String itemName, double price) {
 		this.setItemName(itemName);
 		this.setPrice(price);
 	}
 
-	public Items(Long id, String itemName, float price) {
+	public Items(Long id, String itemName, double price) {
 		this.setId(id);
 		this.setItemName(itemName);
 		this.setPrice(price);
@@ -32,11 +32,11 @@ public class Items {
 		this.itemName = itemName;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -51,7 +51,9 @@ public class Items {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((itemName == null) ? 0 : itemName.hashCode());
-		result = prime * result + Float.floatToIntBits(price);
+		long temp;
+		temp = Double.doubleToLongBits(price);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -74,7 +76,7 @@ public class Items {
 				return false;
 		} else if (!itemName.equals(other.itemName))
 			return false;
-		if (Float.floatToIntBits(price) != Float.floatToIntBits(other.price))
+		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
 			return false;
 		return true;
 	}
