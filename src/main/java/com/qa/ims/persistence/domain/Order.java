@@ -1,14 +1,17 @@
 package com.qa.ims.persistence.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Order {
 	
 	private Long id;
 	private Long customerId;
-	private Long itemId;
-	private Integer quantity;
+	private List<Order> itemId = new ArrayList<>();
+	private List<Order> quantity = new ArrayList<>();
 	
 	
-	public Order(Long customerId, Long itemId, Integer quantity) {
+	public Order(Long customerId, List<Order> itemId, List<Order> quantity) {
 		super();
 		this.customerId = customerId;
 		this.itemId = itemId;
@@ -16,7 +19,7 @@ public class Order {
 	}
 
 
-	public Order(Long id, Long customerId, Long itemId, Integer quantity) {
+	public Order(Long id, Long customerId, List<Order> itemId, List<Order> quantity) {
 		super();
 		this.id = id;
 		this.customerId = customerId;
@@ -45,22 +48,22 @@ public class Order {
 	}
 
 
-	public Long getItemId() {
+	public List<Order> getItemId() {
 		return itemId;
 	}
 
 
-	public void setItemId(Long itemId) {
+	public void setItemId(List<Order> itemId) {
 		this.itemId = itemId;
 	}
 
 
-	public Integer getQuantity() {
+	public List<Order> getQuantity() {
 		return quantity;
 	}
 
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(List<Order> quantity) {
 		this.quantity = quantity;
 	}
 
