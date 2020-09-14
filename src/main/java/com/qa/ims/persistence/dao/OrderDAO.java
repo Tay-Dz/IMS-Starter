@@ -20,8 +20,10 @@ public class OrderDAO implements Dao<Order>{
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		Long customerId = resultSet.getLong("customer_id");
-		Long itemId = resultSet.getLong("item_id");
-		Integer quantity = resultSet.getInt("quantity");
+		List<Long> itemId = new ArrayList<>();
+		List<Integer> quantity = new ArrayList<>();
+		itemId.add(resultSet.getLong("item_id"));
+		quantity.add(resultSet.getInt("quantity"));
 		return new Order(id, customerId,itemId,quantity);
 	}
 
@@ -34,12 +36,23 @@ public class OrderDAO implements Dao<Order>{
 	public List<Order> readAll() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select * from orders");) {
-			List<Order> items = new ArrayList<>();
-			while (resultSet.next()) {
-				items.add(modelFromResultSet(resultSet));
+				ResultSet resultSet = statement.executeQuery("select * from order_customer c join order_products p  on c.id=p.id");) {
+			List<Order> orders = new ArrayList<>();
+			while (resultSet.next()) { 
+				boolean addedOrder =false;
+				Order newOrder = modelFromResultSet(resultSet);
+				for(Order orderInList:orders) {
+					if(newOrder.getId() == orderInList.getId()) {
+						orderInList.addItemId(newOrder.getItemId().get(0));
+						orderInList.addQuantity(newOrder.getQuantity().get(0));
+						addedOrder = true;
+					}
+				}
+				if(!addedOrder) {
+					orders.add(newOrder);
+				}
 			}
-			return items;
+			return orders;
 		} catch (SQLException e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
