@@ -30,6 +30,9 @@ public class OrderDAO implements Dao<Order>{
 	private Long idFromResultSet(ResultSet resultSet) throws SQLException{
 		return resultSet.getLong("id");
 	}
+	private Double totalPriceFromResultSet(ResultSet resultSet) throws SQLException{
+		return resultSet.getDouble("total");
+	}
 
 	/**
 	 * Reads all items from the database
@@ -55,6 +58,11 @@ public class OrderDAO implements Dao<Order>{
 				if(!addedOrder) {
 					orders.add(newOrder);
 				}
+			}
+			for(Order orderInList:orders) {
+				ResultSet totalPrice = statement.executeQuery("SELECT SUM(op.quantity* p.price) as total FROM items p JOIN order_products op ON p.id=op.item_id WHERE op.id ="+	orderInList.getId());
+				totalPrice.next();
+				orderInList.setOrderTotal(totalPriceFromResultSet(totalPrice));
 			}
 			return orders;
 		} catch (SQLException e) {

@@ -9,6 +9,7 @@ public class Order {
 	private Long customerId;
 	private List<Long> itemId = new ArrayList<>();
 	private List<Integer> quantity = new ArrayList<>();
+	private Double orderTotal;
 	
 	
 	public Order(Long customerId, List<Long> itemId, List<Integer> quantity) {
@@ -72,14 +73,24 @@ public class Order {
 	public void addQuantity(Integer quantity) {
 		this.quantity.add(quantity);
 	}
+	
+	public Double getOrderTotal() {
+		return orderTotal;
+	}
+
+
+	public void setOrderTotal(Double orderTotal) {
+		this.orderTotal = orderTotal;
+	}
 
 
 	@Override
 	public String toString() {
 		String output = "Order: id=" + id + ", customerId=" + customerId + ": \n";
 		for(int i=0;i<itemId.size();i++) {
-			output+= " 			itemId=" + itemId.get(i) + ", quantity=" + quantity.get(i) + "\n";
+			output+= " 		itemId=" + itemId.get(i) + ", quantity=" + quantity.get(i) + "\n";
 		}
+		output+="	Order Total = £"+getOrderTotal();
 		return output;
 	}
 
