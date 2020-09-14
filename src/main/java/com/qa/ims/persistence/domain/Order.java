@@ -7,11 +7,11 @@ public class Order {
 	
 	private Long id;
 	private Long customerId;
-	private List<Order> itemId = new ArrayList<>();
-	private List<Order> quantity = new ArrayList<>();
+	private List<Long> itemId = new ArrayList<>();
+	private List<Integer> quantity = new ArrayList<>();
 	
 	
-	public Order(Long customerId, List<Order> itemId, List<Order> quantity) {
+	public Order(Long customerId, List<Long> itemId, List<Integer> quantity) {
 		super();
 		this.customerId = customerId;
 		this.itemId = itemId;
@@ -19,7 +19,7 @@ public class Order {
 	}
 
 
-	public Order(Long id, Long customerId, List<Order> itemId, List<Order> quantity) {
+	public Order(Long id, Long customerId, List<Long> itemId, List<Integer> quantity) {
 		super();
 		this.id = id;
 		this.customerId = customerId;
@@ -48,22 +48,22 @@ public class Order {
 	}
 
 
-	public List<Order> getItemId() {
+	public List<Long> getItemId() {
 		return itemId;
 	}
 
 
-	public void setItemId(List<Order> itemId) {
+	public void setItemId(List<Long> itemId) {
 		this.itemId = itemId;
 	}
 
 
-	public List<Order> getQuantity() {
+	public List<Integer> getQuantity() {
 		return quantity;
 	}
 
 
-	public void setQuantity(List<Order> quantity) {
+	public void setQuantity(List<Integer> quantity) {
 		this.quantity = quantity;
 	}
 
