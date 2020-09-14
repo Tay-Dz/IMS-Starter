@@ -63,7 +63,7 @@ public class OrderDAO implements Dao<Order>{
 	public Order readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM orders_customer ORDER BY id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM order_customer ORDER BY id DESC LIMIT 1");) {
 			resultSet.next();
 			Order latest =  modelFromResultSet(resultSet);
 			ResultSet resultSet2 = statement.executeQuery("select * from order_customer c join order_products p  on c.id=p.id ORDER WHERE c.id ="+latest.getId());
@@ -90,7 +90,7 @@ public class OrderDAO implements Dao<Order>{
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("INSERT INTO order_customer(customer_id) values('" + order.getCustomerId()+ "')");
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM orders_customer ORDER BY id DESC LIMIT 1");
+			ResultSet resultSet = statement.executeQuery("SELECT * FROM order_customer ORDER BY id DESC LIMIT 1");
 			Order newOrder =  modelFromResultSet(resultSet);
 			Long orderId = newOrder.getId();
 			for(int i=0;i<order.getItemId().size();i++) {

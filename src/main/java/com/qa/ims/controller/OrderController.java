@@ -59,7 +59,7 @@ public class OrderController implements CrudController<Order> {
 				case "no": addAgain = false; break;	
 				default: System.out.println("incorrect input");
 			}
-			}while(again!="yes" && again!= "no");
+			}while(!again.equals("yes") && !again.equals("no"));
 		}
 		Order order = orderDAO.create(new Order(customerId, itemId,quantity));
 		LOGGER.info("Order created");
