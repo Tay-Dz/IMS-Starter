@@ -56,6 +56,9 @@ public class Order {
 	public void setItemId(List<Long> itemId) {
 		this.itemId = itemId;
 	}
+	public void addItemId(Long itemId) {
+		this.itemId.add(itemId);
+	}
 
 
 	public List<Integer> getQuantity() {
@@ -65,6 +68,9 @@ public class Order {
 
 	public void setQuantity(List<Integer> quantity) {
 		this.quantity = quantity;
+	}
+	public void addQuantity(Integer quantity) {
+		this.quantity.add(quantity);
 	}
 
 
