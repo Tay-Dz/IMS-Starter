@@ -52,13 +52,13 @@ public class OrderController implements CrudController<Order> {
 			LOGGER.info("Please enter a quantity");
 			quantity.add(utils.getInt());
 			do {
-			LOGGER.info("Do you want to add another item? [yes or no]");
-			again = utils.getString();
-			switch(again) {
-				case "yes": break;
-				case "no": addAgain = false; break;	
-				default: System.out.println("incorrect input");
-			}
+				LOGGER.info("Do you want to add another item? [yes or no]");
+				again = utils.getString();
+				switch(again) {
+					case "yes": break;
+					case "no": addAgain = false; break;	
+					default: System.out.println("incorrect input");
+				}
 			}while(!again.equals("yes") && !again.equals("no"));
 		}
 		Order order = orderDAO.create(new Order(customerId, itemId,quantity));
@@ -84,23 +84,31 @@ public class OrderController implements CrudController<Order> {
 				
 			case "customer":
 				LOGGER.info("Please enter the new customer id");
-				customerId = utils.getLong(); break;
+				customerId = utils.getLong(); 
+				correctInput  =true;
+				break;
 			case "add":
 				customerId =  -9090L;
 				LOGGER.info("Please enter the item id you would like to add");
 				itemId.add(utils.getLong());
 				LOGGER.info("Please enter a quantity");
-				quantity.add(utils.getInt());break;
+				quantity.add(utils.getInt());
+				correctInput  =true;
+				break;
 			case "delete":
 				customerId =  -9091L;
 				LOGGER.info("Please enter the item id you would like to delete");
-				itemId.add(utils.getLong());break;
+				itemId.add(utils.getLong());
+				correctInput  =true;
+				break;
 			case "quantity":
 				customerId =  -9092L;
 				LOGGER.info("Please enter the item id you would like to change the quantity of");
 				itemId.add(utils.getLong());
 				LOGGER.info("Please enter a new quantity");
-				quantity.add(utils.getInt());break;
+				quantity.add(utils.getInt());
+				correctInput  =true;
+				break;
 			default: LOGGER.info("Please enter CUSTOMER, ADD, DELETE or QUANTITY.");
 			}
 		}

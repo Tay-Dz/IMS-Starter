@@ -26,6 +26,10 @@ public class OrderDAO implements Dao<Order>{
 		quantity.add(resultSet.getInt("quantity"));
 		return new Order(id, customerId,itemId,quantity);
 	}
+	
+	private Long idFromResultSet(ResultSet resultSet) throws SQLException{
+		return resultSet.getLong("id");
+	}
 
 	/**
 	 * Reads all items from the database
@@ -90,9 +94,9 @@ public class OrderDAO implements Dao<Order>{
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("INSERT INTO order_customer(customer_id) values('" + order.getCustomerId()+ "')");
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM order_customer ORDER BY id DESC LIMIT 1");
-			Order newOrder =  modelFromResultSet(resultSet);
-			Long orderId = newOrder.getId();
+			ResultSet resultSet = statement.executeQuery("SELECT id FROM order_customer WHERE customer_id ="+order.getCustomerId()+" ORDER BY id DESC LIMIT 1");
+			resultSet.next();
+			Long orderId = idFromResultSet(resultSet);
 			for(int i=0;i<order.getItemId().size();i++) {
 				statement.executeUpdate("INSERT INTO order_products(id,item_id,quantity) values('" + orderId + "','" 
 						+ order.getItemId().get(i) + "','" + order.getQuantity().get(i) + "')");
