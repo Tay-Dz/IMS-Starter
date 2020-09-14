@@ -14,3 +14,17 @@ CREATE TABLE IF NOT EXISTS `ims`.`items` (
     `price` DOUBLE(5,2) NULL DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
+
+CREATE TABLE IF NOT EXIST `ims`.`order_customer` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`customer_id` INT(11) NOT NULL,
+	PRIMARY KEY (`id`),
+	FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+CREATE TABLE IF NOT EXIST `ims`.`order_products` (
+	`id` INT(11) NOT NULL,
+	`item_id` INT(11) NOT NULL,
+	`quantity` INT(11) NOT NULL,
+	FOREIGN KEY (id) REFERENCES order_customer(id),
+	FOREIGN KEY (item_id) REFERENCES items(id)
+);
