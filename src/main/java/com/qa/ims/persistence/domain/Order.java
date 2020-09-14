@@ -76,7 +76,11 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", customerId=" + customerId + ", itemId=" + itemId + ", quantity=" + quantity + "]";
+		String output = "Order: id=" + id + ", customerId=" + customerId + ": \n";
+		for(int i=0;i<itemId.size();i++) {
+			output+= " 			itemId=" + itemId.get(i) + ", quantity=" + quantity.get(i) + "\n";
+		}
+		return output;
 	}
 
 
