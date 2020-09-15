@@ -61,5 +61,17 @@ public class Utils {
 		} while (intInput == null);
 		return intInput;
 	}
+	public Boolean getBoolean() {
+		String input = getString();
+		Boolean boolInput = null;
+		do {
+			try {
+				boolInput = Boolean.parseBoolean(input);
+			} catch (NumberFormatException nfe) {
+				LOGGER.info("Error - Please enter TRUE or FALSE");
+			}
+		} while (boolInput == null);
+		return boolInput;
+	}
 
 }

@@ -5,79 +5,98 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.qa.ims.persistence.dao.CustomerDAO;
-import com.qa.ims.persistence.domain.Customer;
+import com.qa.ims.persistence.dao.AccountDAO;
+import com.qa.ims.persistence.domain.Account;
 import com.qa.ims.utils.Utils;
 
 /**
- * Takes in customer details for CRUD functionality
+ * Takes in Account details for CRUD functionality
  *
  */
-public class AccountController implements CrudController<Customer> {
+public class AccountController implements CrudController<Account> {
 
 	public static final Logger LOGGER = LogManager.getLogger();
 
-	private CustomerDAO customerDAO;
+	private AccountDAO AccountDAO;
 	private Utils utils;
 
-	public AccountController(CustomerDAO customerDAO, Utils utils) {
+	public AccountController(AccountDAO AccountDAO, Utils utils) {
 		super();
-		this.customerDAO = customerDAO;
+		this.AccountDAO = AccountDAO;
 		this.utils = utils;
 	}
-
-	/**
-	 * Reads all customers to the logger
-	 */
-	@Override
-	public List<Customer> readAll() {
-		List<Customer> customers = customerDAO.readAll();
-		for (Customer customer : customers) {
-			LOGGER.info(customer.toString());
+	
+	public Boolean logIn() {
+		Boolean isAdmin = null;
+		while(isAdmin==null) {
+			LOGGER.info("Please enter your user name");
+			String userName = utils.getString();
+			LOGGER.info("Please enter your password");
+			String password = utils.getString();
+			isAdmin = AccountDAO.logIn(userName,password);
+			if (isAdmin == null) {
+				System.out.println("Incorrect login. Try again.");
+			}
 		}
-		return customers;
+		return isAdmin;
 	}
 
 	/**
-	 * Creates a customer by taking in user input
+	 * Reads all Accounts to the logger
 	 */
 	@Override
-	public Customer create() {
-		LOGGER.info("Please enter a first name");
-		String firstName = utils.getString();
-		LOGGER.info("Please enter a surname");
-		String surname = utils.getString();
-		Customer customer = customerDAO.create(new Customer(firstName, surname));
-		LOGGER.info("Customer created");
-		return customer;
+	public List<Account> readAll() {
+		List<Account> accounts = AccountDAO.readAll();
+		for (Account account : accounts) {
+			LOGGER.info(account.toString());
+		}
+		return accounts;
 	}
 
 	/**
-	 * Updates an existing customer by taking in user input
+	 * Creates a Account by taking in user input
 	 */
 	@Override
-	public Customer update() {
-		LOGGER.info("Please enter the id of the customer you would like to update");
+	public Account create() {
+		LOGGER.info("Please enter a user name");
+		String userName = utils.getString();
+		LOGGER.info("Please enter a password");
+		String password = utils.getString();
+		LOGGER.info("Do you want this person to be an admin? [YES or NO]");
+		Boolean isAdmin = utils.getBoolean();
+		Account Account = AccountDAO.create(new Account(userName, password,isAdmin));
+		LOGGER.info("Account created");
+		return Account;
+	}
+
+	/**
+	 * Updates an existing Account by taking in user input
+	 */
+	@Override
+	public Account update() {
+		LOGGER.info("Please enter the id of the Account you would like to update");
 		Long id = utils.getLong();
-		LOGGER.info("Please enter a first name");
-		String firstName = utils.getString();
-		LOGGER.info("Please enter a surname");
-		String surname = utils.getString();
-		Customer customer = customerDAO.update(new Customer(id, firstName, surname));
-		LOGGER.info("Customer Updated");
-		return customer;
+		LOGGER.info("Please enter a user name");
+		String userName = utils.getString();
+		LOGGER.info("Please enter a password");
+		String password = utils.getString();
+		LOGGER.info("Do you want this person to be an admin? [YES or NO]");
+		Boolean isAdmin = utils.getBoolean();
+		Account Account = AccountDAO.update(new Account(id, userName, password,isAdmin));
+		LOGGER.info("Account Updated");
+		return Account;
 	}
 
 	/**
-	 * Deletes an existing customer by the id of the customer
+	 * Deletes an existing Account by the id of the Account
 	 * 
 	 * @return
 	 */
 	@Override
 	public int delete() {
-		LOGGER.info("Please enter the id of the customer you would like to delete");
+		LOGGER.info("Please enter the id of the Account you would like to delete");
 		Long id = utils.getLong();
-		return customerDAO.delete(id);
+		return AccountDAO.delete(id);
 	}
 
 }

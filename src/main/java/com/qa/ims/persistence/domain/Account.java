@@ -13,6 +13,11 @@ public class Account {
 		this.setPassword(password);
 		this.setIsAdmin(isAdmin);
 	}
+	public Account(String userName, String password, Boolean isAdmin) {
+		this.setUserName(userName);
+		this.setPassword(password);
+		this.setIsAdmin(isAdmin);
+	}
 
 	
 	public Long getId() {
