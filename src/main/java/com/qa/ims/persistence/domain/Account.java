@@ -53,6 +53,10 @@ public class Account {
 	public void setIsAdmin(Boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+	public int getIsAdminInt() {
+		if (isAdmin) {return 1;}
+		else{return 0;}
+	}
 
 
 	@Override

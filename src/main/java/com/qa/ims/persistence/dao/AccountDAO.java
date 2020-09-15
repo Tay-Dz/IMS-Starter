@@ -89,7 +89,7 @@ public class AccountDAO implements Dao<Account> {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("INSERT INTO accounts(user_name, password,is_admin) values('" + account.getUserName()
-					+ "','" + account.getPassword() + "','" + account.getIsAdmin() +"')");
+					+ "','" + account.getPassword() + "'," + account.getIsAdminInt() +")");
 			return readLatest();
 		} catch (Exception e) {
 			LOGGER.debug(e);
@@ -122,8 +122,8 @@ public class AccountDAO implements Dao<Account> {
 	public Account update(Account account) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("update customers set user_name ='" + account.getUserName() + "', password ='"
-					+ account.getPassword() + "', is_admin ='"+ account.getIsAdmin() +"' where id =" + account.getId());
+			statement.executeUpdate("update accounts set user_name ='" + account.getUserName() + "', password ='"
+					+ account.getPassword() + "', is_admin ='"+ account.getIsAdminInt() +"' where id =" + account.getId());
 			return readAccount(account.getId());
 		} catch (Exception e) {
 			LOGGER.debug(e);

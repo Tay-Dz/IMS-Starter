@@ -62,7 +62,7 @@ public class AccountController implements CrudController<Account> {
 		String userName = utils.getString();
 		LOGGER.info("Please enter a password");
 		String password = utils.getString();
-		LOGGER.info("Do you want this person to be an admin? [YES or NO]");
+		LOGGER.info("Do you want this person to be an admin? [TRUE OR FALSE]");
 		Boolean isAdmin = utils.getBoolean();
 		Account Account = AccountDAO.create(new Account(userName, password,isAdmin));
 		LOGGER.info("Account created");
@@ -80,7 +80,7 @@ public class AccountController implements CrudController<Account> {
 		String userName = utils.getString();
 		LOGGER.info("Please enter a password");
 		String password = utils.getString();
-		LOGGER.info("Do you want this person to be an admin? [YES or NO]");
+		LOGGER.info("Do you want this person to be an admin? [TRUE OR FALSE]");
 		Boolean isAdmin = utils.getBoolean();
 		Account Account = AccountDAO.update(new Account(id, userName, password,isAdmin));
 		LOGGER.info("Account Updated");
