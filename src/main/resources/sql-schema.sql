@@ -33,5 +33,6 @@ CREATE TABLE IF NOT EXISTS `ims`.`accounts` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `user_name` VARCHAR(40) NULL DEFAULT NULL,
     `password` VARCHAR(40) NULL DEFAULT NULL,
-    `is_admin` BOOLEAN NULL DEFAULT NULL
+    `is_admin` BOOLEAN NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
 );
