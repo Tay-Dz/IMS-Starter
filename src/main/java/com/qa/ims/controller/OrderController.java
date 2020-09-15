@@ -77,7 +77,9 @@ public class OrderController implements CrudController<Order> {
 		Long customerId = null;
 		LOGGER.info("Please enter the id of the order you would like to update");
 		Long id = utils.getLong();
-		LOGGER.info("Do you want to change CUSTOMER id, ADD an item, DELETE an item or change an item QUANTITY?");
+		LOGGER.info("How do you want to update the order: \n"
+				+ "CUSTOMER: To change the customer id \nADD: To add an item to the order, \n"
+				+ "DELETE: To remove an item from the order \nQUANTITY: To change the quantity of an item");
 		while(!correctInput) {
 			String updateChoice = utils.getString();
 			switch(updateChoice) {
