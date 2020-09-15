@@ -27,6 +27,14 @@ public class OrderDAO implements Dao<Order>{
 		return new Order(id, customerId,itemId,quantity);
 	}
 	
+	public Order modelFromResultSetNullList(ResultSet resultSet) throws SQLException {
+		Long id = resultSet.getLong("id");
+		Long customerId = resultSet.getLong("customer_id");
+		List<Long> itemId = new ArrayList<>();
+		List<Integer> quantity = new ArrayList<>();
+		return new Order(id, customerId,itemId,quantity);
+	}
+	
 	private Long idFromResultSet(ResultSet resultSet) throws SQLException{
 		return resultSet.getLong("id");
 	}
@@ -122,10 +130,10 @@ public class OrderDAO implements Dao<Order>{
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM order_customer where id = " + id);) {
 			resultSet.next();
-			Order orderToRead =  modelFromResultSet(resultSet);
-			ResultSet resultSet2 = statement.executeQuery("select * from order_customer c join order_products p  on c.id=p.id ORDER WHERE c.id ="+id);
+			Order orderToRead =  modelFromResultSetNullList(resultSet);
+			ResultSet resultSet2 = statement.executeQuery("SELECT * FROM order_customer JOIN order_products ON order_customer.id=order_products.id WHERE order_customer.id ="+id);
 			while (resultSet2.next()) { 
-				Order newOrder = modelFromResultSet(resultSet);
+				Order newOrder = modelFromResultSet(resultSet2);
 				orderToRead.addItemId(newOrder.getItemId().get(0));
 				orderToRead.addQuantity(newOrder.getQuantity().get(0));
 			}
