@@ -3,11 +3,13 @@ package com.qa.ims;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.qa.ims.controller.AccountController;
 import com.qa.ims.controller.Action;
 import com.qa.ims.controller.CrudController;
 import com.qa.ims.controller.CustomerController;
 import com.qa.ims.controller.ItemsController;
 import com.qa.ims.controller.OrderController;
+import com.qa.ims.persistence.dao.AccountDAO;
 import com.qa.ims.persistence.dao.CustomerDAO;
 import com.qa.ims.persistence.dao.ItemsDAO;
 import com.qa.ims.persistence.dao.OrderDAO;
@@ -22,7 +24,9 @@ public class IMS {
 	private final CustomerController customers;
 	private final ItemsController items;
 	private final OrderController orders;
+	private final AccountController accounts;
 	private final Utils utils;
+	private Boolean isAdmin;
 
 	public IMS() {
 		this.utils = new Utils();
@@ -32,12 +36,16 @@ public class IMS {
 		this.items = new ItemsController(itemDAO, utils);
 		final OrderDAO orderDAO = new OrderDAO();
 		this.orders = new OrderController(orderDAO, utils);
+		final AccountDAO accountDAO = new AccountDAO();
+		this.accounts = new AccountController(accountDAO, utils);
 	}
 
 	public void imsSystem() {
 		LOGGER.info("Welcome to the Inventory Management System!");
 		DBUtils.connect();
 		DBUtils.getInstance().init("src/main/resources/sql-schema.sql","src/main/resources/sql-data.sql");
+		
+		isAdmin = accounts.logIn();
 
 		Domain domain = null;
 		do {
@@ -66,6 +74,13 @@ public class IMS {
 			case ORDER:
 				active = this.orders;
 				break;
+			case ACCOUNT:
+				if(isAdmin) {
+					active=this.accounts;
+					break;
+				} else {
+					LOGGER.info("You Must be an admin to access Accounts");
+				}
 			case STOP:
 				return;
 			default:
