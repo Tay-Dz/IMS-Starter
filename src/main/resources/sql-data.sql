@@ -11,3 +11,6 @@ INSERT INTO `ims`.`order_products` (`id`,`item_id`,`quantity`) VALUES (1,1,2);
 INSERT INTO `ims`.`order_products` (`id`,`item_id`,`quantity`) VALUES (1,2,5);
 
 INSERT INTO `ims`.`order_products` (`id`,`item_id`,`quantity`) VALUES (2,2,1);
+
+INSERT INTO `ims`.`accounts` (`user_name`, `password`,`is_admin`) VALUES ('root', 'root',true);
+INSERT INTO `ims`.`accounts` (`user_name`, `password`,`is_admin`) VALUES ('root2', 'root2',false);
