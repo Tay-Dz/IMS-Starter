@@ -20,6 +20,11 @@ public class AccountDAOTest {
 		DBUtils.connect("src/test/resources/db.properties");
 		DBUtils.getInstance().init("src/test/resources/sql-schema.sql", "src/test/resources/sql-data.sql");
 	}
+	
+	@Test 
+	public void testLogin() {
+		assertEquals(true,DAO.logIn("root", "root"));
+	}
 
 	@Test
 	public void testCreate() {

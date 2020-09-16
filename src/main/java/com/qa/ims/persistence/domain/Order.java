@@ -33,43 +33,23 @@ public class Order {
 		return id;
 	}
 
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
 	public Long getCustomerId() {
 		return customerId;
 	}
-
-
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
-	}
-
 
 	public List<Long> getItemId() {
 		return itemId;
 	}
 
 
-	public void setItemId(List<Long> itemId) {
-		this.itemId = itemId;
-	}
 	public void addItemId(Long itemId) {
 		this.itemId.add(itemId);
 	}
-
 
 	public List<Integer> getQuantity() {
 		return quantity;
 	}
 
-
-	public void setQuantity(List<Integer> quantity) {
-		this.quantity = quantity;
-	}
 	public void addQuantity(Integer quantity) {
 		this.quantity.add(quantity);
 	}
