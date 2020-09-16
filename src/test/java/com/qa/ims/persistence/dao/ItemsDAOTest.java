@@ -23,7 +23,7 @@ public class ItemsDAOTest {
 
 	@Test
 	public void testCreate() {
-		final Items created = new Items(2L, "tv", 449.99);
+		final Items created = new Items(2L, "PC", 549.99);
 		assertEquals(created, DAO.create(created));
 	}
 

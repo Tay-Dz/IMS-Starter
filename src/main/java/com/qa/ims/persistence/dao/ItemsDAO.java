@@ -81,7 +81,7 @@ public class ItemsDAO implements Dao<Items>{
 	public Items readItems(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM item where id = " + id);) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM items where id = " + id);) {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -121,7 +121,7 @@ public class ItemsDAO implements Dao<Items>{
 	public int delete(long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
-			return statement.executeUpdate("delete from item where id = " + id);
+			return statement.executeUpdate("delete from items where id = " + id);
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
