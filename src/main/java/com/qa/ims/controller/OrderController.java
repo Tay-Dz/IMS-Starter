@@ -75,6 +75,7 @@ public class OrderController implements CrudController<Order> {
 		List<Integer> quantity = new ArrayList<>();
 		boolean correctInput = false;
 		Long customerId = null;
+		Order order = new Order(customerId, itemId,quantity);
 		LOGGER.info("Please enter the id of the order you would like to update");
 		Long id = utils.getLong();
 		LOGGER.info("How do you want to update the order: \n"
@@ -87,6 +88,7 @@ public class OrderController implements CrudController<Order> {
 			case "customer":
 				LOGGER.info("Please enter the new customer id");
 				customerId = utils.getLong(); 
+				order = orderDAO.update(new Order(id,customerId, itemId,quantity));
 				correctInput  =true;
 				break;
 			case "add":
@@ -95,12 +97,14 @@ public class OrderController implements CrudController<Order> {
 				itemId.add(utils.getLong());
 				LOGGER.info("Please enter a quantity");
 				quantity.add(utils.getInt());
+				order = orderDAO.updateAdd(new Order(id,customerId, itemId,quantity));
 				correctInput  =true;
 				break;
 			case "delete":
 				customerId =  -9091L;
 				LOGGER.info("Please enter the item id you would like to delete");
 				itemId.add(utils.getLong());
+				order = orderDAO.updateDelete(new Order(id,customerId, itemId,quantity));
 				correctInput  =true;
 				break;
 			case "quantity":
@@ -109,13 +113,12 @@ public class OrderController implements CrudController<Order> {
 				itemId.add(utils.getLong());
 				LOGGER.info("Please enter a new quantity");
 				quantity.add(utils.getInt());
+				order = orderDAO.updateQuantity(new Order(id,customerId, itemId,quantity));
 				correctInput  =true;
 				break;
 			default: LOGGER.info("Please enter CUSTOMER, ADD, DELETE or QUANTITY.");
 			}
 		}
-		
-		Order order = orderDAO.update(new Order(id,customerId, itemId,quantity));
 		LOGGER.info("Order Updated");
 		return order;
 	}

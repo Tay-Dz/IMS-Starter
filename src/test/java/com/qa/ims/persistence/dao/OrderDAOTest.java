@@ -28,6 +28,7 @@ public class OrderDAOTest {
 		itemId.add(1l);
 		quantity.add(2);
 		final Order created = new Order(2L, 1l, itemId,quantity);
+		
 		assertEquals(created, DAO.create(created));
 	}
 
