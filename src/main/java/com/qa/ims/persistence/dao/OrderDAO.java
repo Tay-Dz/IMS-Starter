@@ -85,10 +85,10 @@ public class OrderDAO implements Dao<Order>{
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM order_customer ORDER BY id DESC LIMIT 1");) {
 			resultSet.next();
-			Order latest =  modelFromResultSet(resultSet);
-			ResultSet resultSet2 = statement.executeQuery("select * from order_customer c join order_products p  on c.id=p.id ORDER WHERE c.id ="+latest.getId());
+			Order latest =  modelFromResultSetNullList(resultSet);
+			ResultSet resultSet2 = statement.executeQuery("select * from order_customer c join order_products p  on c.id=p.id WHERE c.id ="+latest.getId());
 			while (resultSet2.next()) { 
-				Order newOrder = modelFromResultSet(resultSet);
+				Order newOrder = modelFromResultSet(resultSet2);
 				latest.addItemId(newOrder.getItemId().get(0));
 				latest.addQuantity(newOrder.getQuantity().get(0));
 			}
