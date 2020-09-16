@@ -144,6 +144,19 @@ public class OrderDAO implements Dao<Order>{
 		}
 		return null;
 	}
+	public Order readOrderCustomer(Long id) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM order_customer where id = " + id);) {
+			resultSet.next();
+			Order orderToRead =  modelFromResultSetNullList(resultSet);
+			return orderToRead;
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return null;
+	}
 
 	/**
 	 * Updates a item in the database
@@ -157,41 +170,41 @@ public class OrderDAO implements Dao<Order>{
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("update order_customer set customer_id ='" + order.getCustomerId() +"' where id =" + order.getId());
-			return readOrder(order.getId());
+			return readOrderCustomer(order.getId());
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		return null;
 	}
-	public Order updateAdd(Order order) {
+	public Order updateAdd(Long id, Long itemId, int quantity) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("INSERT INTO order_products(id,item_id,quantity) values('" + order.getId() + "','" 
-					+ order.getItemId().get(0) + "','" + order.getQuantity().get(0) + "')");
-			return readOrder(order.getId());
+			statement.executeUpdate("INSERT INTO order_products(id,item_id,quantity) values('" + id + "','" 
+					+ itemId + "','" + quantity + "')");
+			return readOrder(id);
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		return null;
 	}
-	public Order updateDelete(Order order) {
+	public Order updateDelete(Long id, Long itemId) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("delete from order_products where id = " + order.getId()+" and item_id ="+order.getItemId().get(0));
-			return readOrder(order.getId());
+			statement.executeUpdate("delete from order_products where id = " + id+" and item_id ="+itemId);
+			return readOrder(id);
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		return null;
 	}
-	public Order updateQuantity(Order order) {
+	public Order updateQuantity(Long id, Long itemId, int quantity) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("update order_products set quantity = '"+order.getQuantity().get(0)+"' where id = " + order.getId()+" and item_id ="+order.getItemId().get(0));
-			return readOrder(order.getId());
+			statement.executeUpdate("update order_products set quantity = '"+quantity+"' where id = " + id+" and item_id ="+itemId);
+			return readOrder(id);
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
