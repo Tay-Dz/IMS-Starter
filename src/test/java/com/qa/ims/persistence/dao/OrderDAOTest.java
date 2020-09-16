@@ -27,8 +27,8 @@ public class OrderDAOTest {
 		List<Integer> quantity = new ArrayList<>();
 		itemId.add(1l);
 		quantity.add(2);
-		final Order created = new Order(2L, 1l, itemId,quantity);
-		
+		Order created = new Order(2L, 1l, itemId,quantity);
+
 		assertEquals(created, DAO.create(created));
 	}
 
@@ -39,7 +39,9 @@ public class OrderDAOTest {
 		itemId.add(1l);
 		quantity.add(2);
 		List<Order> expected = new ArrayList<>();
-		expected.add(new Order(1L, 1l, itemId,quantity));
+		Order check = new Order(1L, 1l, itemId,quantity);
+		check.setOrderTotal(13.98);
+		expected.add(check);
 		assertEquals(expected, DAO.readAll());
 	}
 
@@ -61,15 +63,50 @@ public class OrderDAOTest {
 		quantity.add(2);
 		assertEquals(new Order(ID, 1l, itemId,quantity), DAO.readOrder(ID));
 	}
+	@Test
+	public void testReadCustomer() {
+		final long ID = 1L;
+		List<Long> itemId = new ArrayList<>();
+		List<Integer> quantity = new ArrayList<>();
+		assertEquals(new Order(ID, 1l, itemId,quantity), DAO.readOrderCustomer(ID));
+	}
 
 	@Test
 	public void testUpdate() {
 		List<Long> itemId = new ArrayList<>();
 		List<Integer> quantity = new ArrayList<>();
-		itemId.add(1l);
-		quantity.add(5);
-		final Order updated = new Order(2l, 1l, itemId,quantity);
+		final Order updated = new Order(1l, 1l, itemId,quantity);
 		assertEquals(updated, DAO.update(updated));
+
+	}
+	@Test
+	public void testUpdateAdd() {
+		List<Long> itemId = new ArrayList<>();
+		List<Integer> quantity = new ArrayList<>();
+		Order  OGup = DAO.updateAdd(1l,1l,5);
+		itemId.add(1l);
+		itemId.add(1l);
+		quantity.add(2);
+		quantity.add(5);
+		Order  updated2 = new Order(1l, 1l, itemId,quantity);
+		assertEquals(updated2, OGup);
+
+	}
+	@Test
+	public void testUpdateDelete() {
+		List<Long> itemId = new ArrayList<>();
+		List<Integer> quantity = new ArrayList<>();
+		final Order updated = new Order(1l, 1l, itemId,quantity);
+		assertEquals(updated, DAO.updateDelete(1l,1l));
+
+	}@Test
+	public void testUpdateQuantity() {
+		List<Long> itemId = new ArrayList<>();
+		List<Integer> quantity = new ArrayList<>();
+		itemId.add(1l);
+		quantity.add(7);
+		final Order updated = new Order(1l, 1l, itemId,quantity);
+		assertEquals(updated, DAO.updateQuantity(1l,1l,7));
 
 	}
 
