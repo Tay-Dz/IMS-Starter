@@ -1,3 +1,6 @@
+drop schema ims;
+CREATE SCHEMA IF NOT EXISTS `ims`;
+USE `ims` ;
 DROP TABLE IF EXISTS `customers`;
 CREATE TABLE IF NOT EXISTS `ims`.`customers` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,

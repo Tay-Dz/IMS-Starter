@@ -54,6 +54,7 @@ public class CustomerDAOTest {
 
 	@Test
 	public void testDelete() {
+		
 		assertEquals(1, DAO.delete(1));
 	}
 }
