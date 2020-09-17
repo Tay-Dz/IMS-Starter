@@ -13,9 +13,6 @@ What things you need to install the software and how to install them
 * Java 8
 * MySQL 5.7
 
-```
-Give examples
-```
 
 ### Installing
 
@@ -82,9 +79,3 @@ We use [SemVer](http://semver.org/) for versioning.
 ## License
 
 This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md) file for details 
-
-*For help in [Choosing a license](https://choosealicense.com/)*
-
-## Acknowledgments
-
-*
