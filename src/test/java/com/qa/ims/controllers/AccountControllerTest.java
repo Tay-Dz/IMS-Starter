@@ -28,6 +28,20 @@ public class AccountControllerTest {
 
 	@InjectMocks
 	private AccountController controller;
+	
+	@Test
+	public void testLogIn() {
+		final String U_NAME = "root", PASSWORD = "root";
+		final Boolean isAdmin = true;
+		Mockito.when(utils.getString()).thenReturn(U_NAME, PASSWORD);
+		Mockito.when(dao.logIn(U_NAME,PASSWORD)).thenReturn(true);
+		
+		assertEquals(isAdmin,controller.logIn());
+		
+		Mockito.verify(utils, Mockito.times(2)).getString();
+		Mockito.verify(dao, Mockito.times(1)).logIn(U_NAME,PASSWORD);
+		
+	}
 
 	@Test
 	public void testCreate() {
