@@ -1,7 +1,7 @@
-Coverage: 34%
-# Project Title
+Coverage: 73.3%
+# Inventory Management System
 
-One Paragraph of project description goes here
+An Inventory Management System program written in Java. The program inlcludes CRUD functionality for customer, item and order entites within an SQL database.
 
 ## Getting Started
 
@@ -10,6 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 What things you need to install the software and how to install them
+* Java 8
+* MySQL 5.7
 
 ```
 Give examples
@@ -75,6 +77,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* **Tay Dzonu** - *Completed work from IMS starter* - [Tay-Dzonu-QA](https://github.com/Tay-Dzonu-QA)
 
 ## License
 
@@ -84,6 +87,4 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+*
