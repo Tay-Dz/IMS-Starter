@@ -22,7 +22,6 @@ Ensure MySQL is downloaded and in db.properties ensure db.url, db.user and db.pa
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
 
 ### Unit Tests 
 
@@ -36,16 +35,17 @@ Right click the project folder in the 'Project Explorer' and select 'Coverage as
 
 ## Deployment
 
-Run the program in the command line with:
+Run the program in the command line within the 'IMS-Starter' folder with:
 ``
 java -jar ims-0.0.1-jar-with-dependencies.jar
 ``
 
-If you update the program, rebuild the program in the commandline with:
+If you update the program, rebuild the program in the command line with:
 ``
 maven clean package
 ``
-Then run the program in the command line with:
+.
+Then run the program with:
 ``
 java -jar target/ims-0.0.1-jar-with-dependencies.jar
 ``
