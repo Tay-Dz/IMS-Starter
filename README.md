@@ -19,7 +19,6 @@ What things you need to install the software and how to install them
 First download the files and open up the project in eclipse or any other java IDE. 
 Ensure MySQL is downloaded and in db.properties ensure db.url, db.user and db.password are correct.
 
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
@@ -27,11 +26,12 @@ Explain how to run the automated tests for this system. Break down into which te
 
 ### Unit Tests 
 
-Explain what these tests test, why and how to run them
+JUnit tests are used to test individual components of each class.
+To run the test open up the test class file in your IDE and select 'Run as JUnit Test'.
 
-```
-Give an example
-```
+### Coverage Test
+
+Right click the project folder in the 'Project Explorer' and select 'Coverage as JUnit Test'.
 
 
 ## Deployment
