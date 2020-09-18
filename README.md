@@ -16,19 +16,8 @@ What things you need to install the software and how to install them
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
+First download the files and open up the project in eclipse or any other java IDE. 
+Ensure MySQL is downloaded and in db.properties ensure db.url, db.user and db.password are correct.
 
 End with an example of getting some data out of the system or using it for a little demo
 
@@ -44,24 +33,22 @@ Explain what these tests test, why and how to run them
 Give an example
 ```
 
-### Integration Tests 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Run the program in the command line with:
+``
+java -jar ims-0.0.1-jar-with-dependencies.jar
+``
+
+If you update the program, rebuild the program in the commandline with:
+``
+maven clean package
+``
+Then run the program in the command line with:
+``
+java -jar target/ims-0.0.1-jar-with-dependencies.jar
+``
 
 ## Built With
 
