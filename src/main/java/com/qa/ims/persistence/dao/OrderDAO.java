@@ -43,9 +43,9 @@ public class OrderDAO implements Dao<Order>{
 	}
 
 	/**
-	 * Reads all items from the database
+	 * Reads all orders from the database
 	 * 
-	 * @return A list of items
+	 * @return A list of orders
 	 */
 	@Override
 	public List<Order> readAll() {
@@ -101,9 +101,9 @@ public class OrderDAO implements Dao<Order>{
 	}
 
 	/**
-	 * Creates a item in the database
+	 * Creates a order in the database
 	 * 
-	 * @param item - takes in a item object. id will be ignored
+	 * @param order - takes in a order object. id will be ignored
 	 */
 	@Override
 	public Order create(Order order) {
@@ -159,10 +159,10 @@ public class OrderDAO implements Dao<Order>{
 	}
 
 	/**
-	 * Updates a item in the database
+	 * Updates an order in the database by changing the customer id
 	 * 
-	 * @param item - takes in a item object, the id field will be used to
-	 *                 update that item in the database
+	 * @param order - takes in a order object, the id field will be used to
+	 *                 update that order in the database
 	 * @return
 	 */
 	@Override
@@ -177,6 +177,13 @@ public class OrderDAO implements Dao<Order>{
 		}
 		return null;
 	}
+	/**
+	 * Updates an order in the database by adding a new item
+	 * 
+	 * @param Long , Long, int - takes in an order id, item id and quantity, used to insert
+	 * 					into a specific order
+	 * @return
+	 */
 	public Order updateAdd(Long id, Long itemId, int quantity) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
@@ -189,6 +196,13 @@ public class OrderDAO implements Dao<Order>{
 		}
 		return null;
 	}
+	/**
+	 * Updates an order in the database by deleting an item
+	 * 
+	 * @param Long , Long - takes in an order id and item id, used to delete a specific item from
+	 * 					a specific order
+	 * @return
+	 */
 	public Order updateDelete(Long id, Long itemId) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
@@ -200,6 +214,13 @@ public class OrderDAO implements Dao<Order>{
 		}
 		return null;
 	}
+	/**
+	 * Updates a order in the database by changing the quantity of an item
+	 * 
+	 * @param Long , Long, int - takes in an order id, item id and quantity, used to change
+	 * 					the quantity of an item within an order
+	 * @return
+	 */
 	public Order updateQuantity(Long id, Long itemId, int quantity) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
@@ -213,9 +234,9 @@ public class OrderDAO implements Dao<Order>{
 	}
 
 	/**
-	 * Deletes a item in the database
+	 * Deletes an order in the database
 	 * 
-	 * @param id - id of the item
+	 * @param id - id of the order
 	 */
 	@Override
 	public int delete(long id) {

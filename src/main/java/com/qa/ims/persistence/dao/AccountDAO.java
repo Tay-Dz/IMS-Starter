@@ -29,6 +29,11 @@ public class AccountDAO implements Dao<Account> {
 		return resultSet.getBoolean("is_admin");
 	}
 	
+	/**
+	 * Takes in the user Name and password of an account for logging in
+	 * 
+	 * @return A Boolean which states whether the account is an admin
+	 */
 	
 	public Boolean logIn(String userName,String password) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
@@ -45,9 +50,9 @@ public class AccountDAO implements Dao<Account> {
 	}
 
 	/**
-	 * Reads all customers from the database
+	 * Reads all accounts from the database
 	 * 
-	 * @return A list of customers
+	 * @return A list of accounts
 	 */
 	@Override
 	public List<Account> readAll() {
@@ -80,9 +85,9 @@ public class AccountDAO implements Dao<Account> {
 	}
 
 	/**
-	 * Creates a customer in the database
+	 * Creates an account in the database
 	 * 
-	 * @param customer - takes in a customer object. id will be ignored
+	 * @param account - takes in an account object. id will be ignored
 	 */
 	@Override
 	public Account create(Account account) {
@@ -112,10 +117,10 @@ public class AccountDAO implements Dao<Account> {
 	}
 
 	/**
-	 * Updates a customer in the database
+	 * Updates an account in the database
 	 * 
-	 * @param customer - takes in a customer object, the id field will be used to
-	 *                 update that customer in the database
+	 * @param account - takes in an account object, the id field will be used to
+	 *                 update that account in the database
 	 * @return
 	 */
 	@Override
@@ -133,9 +138,9 @@ public class AccountDAO implements Dao<Account> {
 	}
 
 	/**
-	 * Deletes a customer in the database
+	 * Deletes an account in the database
 	 * 
-	 * @param id - id of the customer
+	 * @param id - id of the account
 	 */
 	@Override
 	public int delete(long id) {

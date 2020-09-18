@@ -23,7 +23,7 @@ public class ItemsController implements CrudController<Items> {
 	}
 
 	/**
-	 * Reads all customers to the logger
+	 * Reads all items to the logger
 	 */
 	@Override
 	public List<Items> readAll() {
@@ -35,7 +35,7 @@ public class ItemsController implements CrudController<Items> {
 	}
 
 	/**
-	 * Creates a customer by taking in user input
+	 * Creates a item by taking in user input
 	 */
 	@Override
 	public Items create() {
@@ -49,7 +49,7 @@ public class ItemsController implements CrudController<Items> {
 	}
 
 	/**
-	 * Updates an existing customer by taking in user input
+	 * Updates an existing item by taking in user input
 	 */
 	@Override
 	public Items update() {
@@ -65,7 +65,7 @@ public class ItemsController implements CrudController<Items> {
 	}
 
 	/**
-	 * Deletes an existing customer by the id of the customer
+	 * Deletes an existing item by the id of the item
 	 * 
 	 * @return
 	 */

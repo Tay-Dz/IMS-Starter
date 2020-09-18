@@ -60,9 +60,9 @@ public class ItemsDAO implements Dao<Items>{
 	}
 
 	/**
-	 * Creates a item in the database
+	 * Creates an item in the database
 	 * 
-	 * @param item - takes in a item object. id will be ignored
+	 * @param item - takes in an item object. id will be ignored
 	 */
 	@Override
 	public Items create(Items item) {
@@ -92,9 +92,9 @@ public class ItemsDAO implements Dao<Items>{
 	}
 
 	/**
-	 * Updates a item in the database
+	 * Updates an item in the database
 	 * 
-	 * @param item - takes in a item object, the id field will be used to
+	 * @param item - takes in an item object, the id field will be used to
 	 *                 update that item in the database
 	 * @return
 	 */
@@ -113,7 +113,7 @@ public class ItemsDAO implements Dao<Items>{
 	}
 
 	/**
-	 * Deletes a item in the database
+	 * Deletes an item in the database
 	 * 
 	 * @param id - id of the item
 	 */
