@@ -149,8 +149,7 @@ public class OrderDAO implements Dao<Order>{
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("SELECT * FROM order_customer where id = " + id);) {
 			resultSet.next();
-			Order orderToRead =  modelFromResultSetNullList(resultSet);
-			return orderToRead;
+			return modelFromResultSetNullList(resultSet);
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());

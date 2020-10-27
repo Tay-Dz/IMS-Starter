@@ -68,9 +68,9 @@ public class Order {
 	public String toString() {
 		String output = "Order: id=" + id + ", customerId=" + customerId + ": \n";
 		for(int i=0;i<itemId.size();i++) {
-			output+= " 		itemId=" + itemId.get(i) + ", quantity=" + quantity.get(i) + "\n";
+			output+= "\t\titemId=" + itemId.get(i) + ", quantity=" + quantity.get(i) + "\n";
 		}
-		output+="	Order Total = £"+getOrderTotal();
+		output+="\tOrder Total = £"+getOrderTotal();
 		return output;
 	}
 

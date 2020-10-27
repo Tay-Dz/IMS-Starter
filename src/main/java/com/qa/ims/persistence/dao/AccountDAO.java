@@ -25,7 +25,7 @@ public class AccountDAO implements Dao<Account> {
 		Boolean isAdmin = resultSet.getBoolean("is_admin");
 		return new Account(id,firstName,password,isAdmin);
 	}
-	public Boolean BoolFromResultSet(ResultSet resultSet) throws SQLException {
+	public Boolean boolFromResultSet(ResultSet resultSet) throws SQLException {
 		return resultSet.getBoolean("is_admin");
 	}
 	
@@ -40,7 +40,7 @@ public class AccountDAO implements Dao<Account> {
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("select is_admin from accounts WHERE user_name ='"+userName+"' and password = '"+password+"'");) {
 					resultSet.next();
-					return BoolFromResultSet(resultSet);
+					return boolFromResultSet(resultSet);
 		} catch (SQLException e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());

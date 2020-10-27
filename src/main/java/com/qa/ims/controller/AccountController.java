@@ -17,12 +17,12 @@ public class AccountController implements CrudController<Account> {
 
 	public static final Logger LOGGER = LogManager.getLogger();
 
-	private AccountDAO AccountDAO;
+	private AccountDAO accountDAO;
 	private Utils utils;
 
-	public AccountController(AccountDAO AccountDAO, Utils utils) {
+	public AccountController(AccountDAO accountDAO, Utils utils) {
 		super();
-		this.AccountDAO = AccountDAO;
+		this.accountDAO = accountDAO;
 		this.utils = utils;
 	}
 	
@@ -33,7 +33,7 @@ public class AccountController implements CrudController<Account> {
 			String userName = utils.getString();
 			LOGGER.info("Please enter your password");
 			String password = utils.getString();
-			isAdmin = AccountDAO.logIn(userName,password);
+			isAdmin = accountDAO.logIn(userName,password);
 			if (isAdmin == null) {
 				System.out.println("Incorrect login. Try again.");
 			}
@@ -46,7 +46,7 @@ public class AccountController implements CrudController<Account> {
 	 */
 	@Override
 	public List<Account> readAll() {
-		List<Account> accounts = AccountDAO.readAll();
+		List<Account> accounts = accountDAO.readAll();
 		for (Account account : accounts) {
 			LOGGER.info(account.toString());
 		}
@@ -64,9 +64,9 @@ public class AccountController implements CrudController<Account> {
 		String password = utils.getString();
 		LOGGER.info("Do you want this person to be an admin? [TRUE OR FALSE]");
 		Boolean isAdmin = utils.getBoolean();
-		Account Account = AccountDAO.create(new Account(userName, password,isAdmin));
+		Account account = accountDAO.create(new Account(userName, password,isAdmin));
 		LOGGER.info("Account created");
-		return Account;
+		return account;
 	}
 
 	/**
@@ -82,9 +82,9 @@ public class AccountController implements CrudController<Account> {
 		String password = utils.getString();
 		LOGGER.info("Do you want this person to be an admin? [TRUE OR FALSE]");
 		Boolean isAdmin = utils.getBoolean();
-		Account Account = AccountDAO.update(new Account(id, userName, password,isAdmin));
+		Account account = accountDAO.update(new Account(id, userName, password,isAdmin));
 		LOGGER.info("Account Updated");
-		return Account;
+		return account;
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class AccountController implements CrudController<Account> {
 	public int delete() {
 		LOGGER.info("Please enter the id of the Account you would like to delete");
 		Long id = utils.getLong();
-		return AccountDAO.delete(id);
+		return accountDAO.delete(id);
 	}
 
 }

@@ -80,6 +80,7 @@ public class IMS {
 					break;
 				} else {
 					LOGGER.info("You Must be an admin to access Accounts");
+					break;
 				}
 			case STOP:
 				return;
